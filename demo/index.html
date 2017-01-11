@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Version Manager - example</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- This script always should be the first! -->
+    <script src="../version-manager/main.js"></script>
+</head>
+<body>
+
+<content>
+    <div> Press <b>F12 -> Console</b> to see internal messages. </div>
+
+    <form>
+        <label for="ls-key">Key Name:</label>
+        <input id="ls-key" type="text" />
+        <label for="ls-value">Key Value:</label>
+        <input id="ls-value" type="text" />
+    </form>
+
+    <button onclick="addItem()">Add item to localStorage</button>
+</content>
+
+<script src="src.js"></script>
+
+</body>
+</html>

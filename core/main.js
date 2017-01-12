@@ -1,6 +1,4 @@
-// const versionKey = 'YourAppName.currentVersion';
-// const configPath = '../version-manager/config.json'; // root category is application 'index.html' destination
-const configPath = '_CFG_PATH_';
+const configPath = '_CFG_PATH_'; // root category is application 'index.html' destination
 const xmlhttp = new XMLHttpRequest();
 
 xmlhttp.open('GET', configPath, true);
@@ -8,7 +6,6 @@ xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == 4) {
         if(xmlhttp.status == 200) {
             const config = JSON.parse(xmlhttp.responseText);
-            // const currentVer = JSON.parse(localStorage.getItem(versionKey));
             const versionKey = config.versionKey;
             const currentVer = JSON.parse(localStorage.getItem(versionKey));
             if (currentVer != config.version) {

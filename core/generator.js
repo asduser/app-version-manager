@@ -1,18 +1,24 @@
 const fs = require('fs');
-const path = '../app-version-manager/config.json';
-const version = new Date().getTime();
-const data = { version: version };
+const settings = {
+    targetDir: '../app-version-manager/',
+    configName: 'config.json',
+    configData: {
+        version: new Date().getTime(),
+        versionKey: 'YourAppName.currentVersion'
+    },
+    mainFilePath: './main.js'
+};
+const newConfigPath = settings.targetDir + settings.configName;
+const newMainFilePath = settings.targetDir + settings.mainFilePath;
 
 fs.mkdir('../app-version-manager/', function() {
-    fs.writeFile(path, JSON.stringify(data), 'utf8', function() {
-        copySync('./main.js', '../app-version-manager/main.js');
+    fs.writeFile(newConfigPath, JSON.stringify(settings.configData), 'utf8', function() {
+        fs.readFile(settings.mainFilePath, 'utf8', function (err, data) {
+            if (err) return console.log(err);
+            var result = data.replace(/_CFG_PATH_/g, newConfigPath);
+            fs.writeFile(newMainFilePath, result, 'utf8', function (err) {
+                if (err) return console.log(err);
+            });
+        });
     });
 });
-
-function copySync(src, dest) {
-    if (!fs.existsSync(src)) {
-        return false;
-    }
-    var data = fs.readFileSync(src, 'utf-8');
-    fs.writeFileSync(dest, data);
-}

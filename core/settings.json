@@ -1,0 +1,11 @@
+{
+  "versionKey": "YourAppName.currentVersion",
+  "buildDirName": "app-version-manager",
+  "configName": "config.json",
+  "mainFilePath": "main.js",
+  "copyTo": [
+    "../demos/1-direct-keys-specifying/",
+    "../demos/2-data-auto-loading/"
+  ],
+  "autoCopy": true
+}

@@ -18,7 +18,7 @@ xmlhttp.onreadystatechange = function() {
                 console.info('You have an actual build:', currentVer);
             }
         } else {
-            console.error('Details: Can\'t read application cache configuration. Reason: file is not found.');
+            console.error('Details: Can\'t read application cache configuration. Reason: file not found.');
         }
     }
 };

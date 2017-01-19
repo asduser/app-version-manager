@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Version Manager - example#2</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- This script always should be the first! -->
+    <script src="app-version-manager/main.js"></script>
+</head>
+<body>
+
+<content>
+    <div class="info">
+        <p> Press control buttons to change initial data-loading. </p>
+        <p> Man's info will be displayed by default. </p>
+    </div>
+    <div class="content">
+        <p><code id="result"></code></p>
+        <button onclick="setInitialData('man')">Set man</button>
+        <button onclick="setInitialData('woman')">Set woman</button>
+        <button onclick="setInitialData('child')">Set child</button>
+    </div>
+</content>
+
+<script src="src.js"></script>
+
+</body>
+</html>

@@ -1,3 +1,8 @@
+[![node](https://img.shields.io/node/v/gh-badges.svg)]()
+[![npm (scoped)](https://img.shields.io/npm/v/@cycle/core.svg)]()
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+[![](https://img.shields.io/badge/version-1.0-green.svg)]()
+
 ## Application Version Manager
 
 > Flexible utility via pure JavaScript to work with client application cache. 

@@ -27,10 +27,10 @@ It's not just an adding timestamps to *.js files, you can manage any client stor
 }
 ```
 
-`dirPath` - application directory
+`dirPath` - application directory<br/>
 `buildPath` - directory for version-manager inside specified application
 
-Use demos directory to see a specific use cases.
+Use demos to see a specific use cases.
 
 ## Demo example
 

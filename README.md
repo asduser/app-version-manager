@@ -7,10 +7,10 @@ It's not just an adding timestamps to *.js files, you can manage any client stor
 
 ## Installation & using
 
-1. `git clone https://github.com/asduser/app-version-manager.git`.
+1. `npm install`.
 2. `cd core`.
-2. `node generator.js` (or just execute `build.bat`).
-3. (optional) Set target directories in `core/settings.json` where a new version-manager build will be loaded.
+3. `node generator.js` (or just execute `build.bat`).
+4. (optional) Set target directories in `core/settings.json` where a new version-manager build will be loaded.
 
 ```javascript
 {

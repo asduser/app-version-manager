@@ -10,37 +10,41 @@ const configData = {
     versionKey: config.versionKey
 };
 const targetDir = '../build/';
-const newConfigPath = targetDir + config.configName;
-const newMainFilePath = targetDir + config.mainFilePath;
-let data = fsExtra.readFileSync(config.mainFilePath, {encoding: 'utf8'});
-let dataUpdated = data.replace(/_CFG_PATH_/g, newConfigPath);
+const targetConfigPath = targetDir + 'config.json';
+const targetMainFilePath = targetDir + 'main.js';
+let data = fsExtra.readFileSync('main.js', {encoding: 'utf8'});
 
 fsExtra.emptyDirSync(targetDir);
-fsExtra.outputFile(newMainFilePath, dataUpdated, function(err){
-    if (err) return console.log(err);
-    writeJSON(newConfigPath, configData);
-    if (config.autoCopy) {
-        console.log("\n");
-        config.copyTo.forEach(function (dirPath) {
-            copyDir(targetDir, dirPath);
-        });
-    }
-});
+fsExtra.copySync('main.js', targetMainFilePath);
+writeJSON(targetConfigPath, configData);
 
-/* Functionality */
-function writeJSON(file, data){
-    fsExtra.outputJson(file, data, function (err) {
-        if (err) return console.log(err);
+if (config.autoCopy) {
+    console.log("\n");
+    config.copyTo.forEach(function (item) {
+        autoCopy(targetDir, item, function (){
+            let dataUpdated = data.replace(/_CFG_PATH_/g, item.buildPath + 'config.json');
+            let mainPath = item.dirPath + item.buildPath + 'main.js';
+            fsExtra.writeFile(mainPath, dataUpdated, handleErrors);
+        });
     });
 }
 
-function copyDir(srcDir, targetDir) {
-    fsExtra.ensureDir(targetDir, function (err) {
+/* Functionality */
+function writeJSON(file, data){
+    fsExtra.writeJson(file, data, handleErrors);
+}
+
+function autoCopy(srcDir, item, callback) {
+    const targetDir = item.dirPath + item.buildPath;
+    fsExtra.emptyDirSync(targetDir);
+    fsExtra.copy(srcDir, targetDir, function (err) {
         if (err) return console.log(err);
-        const targetDirUpdated = targetDir + config.buildDirName;
-        fsExtra.copy(srcDir, targetDirUpdated, function (err) {
-            if (err) return console.log(err);
-            console.log('Successfully copied to: ', targetDir);
-        })
+        console.log('Successfully copied to: ', targetDir);
+        if (callback) callback();
     });
+}
+
+function handleErrors(err) {
+    if (err) return console.log(err);
+    return null;
 }

@@ -1,6 +1,2 @@
 node_modules/
-app-version-manager/
-build/
-demos/1-direct-keys-specifying/app-version-manager/
-demos/2-data-auto-loading/app-version-manager/
 .idea/

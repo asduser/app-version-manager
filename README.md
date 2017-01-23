@@ -27,10 +27,10 @@ It's not just an adding timestamps to *.js files, you can manage any client stor
 }
 ```
 
-**versionKey** - localStorage key, which contains info about current build.
-**dirPath** - future application directory.
-**buildPath** - directory for version-manager inside specified application.
-**autoCopy** - if true - a new build will be copied there automatically according to "copyTo" parameters, otherwise - will be created just a new version-manager build.
+**versionKey** - localStorage key, which contains info about current build.<br/>
+**dirPath** - future application directory.<br/>
+**buildPath** - directory for version-manager inside specified application.<br/>
+**autoCopy** - if true - a new build will be copied there automatically according to "copyTo" parameters, otherwise - will be created just a new version-manager build.<br/>
 
 Use demos directory to see a specific use cases.
 

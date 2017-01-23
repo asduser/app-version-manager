@@ -9,9 +9,13 @@ xmlhttp.onreadystatechange = function() {
             const versionKey = config.versionKey;
             const currentVer = JSON.parse(localStorage.getItem(versionKey));
             if (currentVer != config.version) {
-                localStorage.clear();
-                sessionStorage.clear();
-                clearCookies();
+
+                if (config.forceRemoveKeys.length) {
+                    deleteSpecificStorageItems(config.forceRemoveKeys);
+                } else {
+                    clearAll();
+                }
+
                 localStorage.setItem(versionKey, JSON.stringify(config.version));
                 location.reload(true);
             } else {
@@ -24,6 +28,7 @@ xmlhttp.onreadystatechange = function() {
 };
 xmlhttp.send(null);
 
+/* Cookie */
 function clearCookies() {
     var cookies = document.cookie.split(";");
     for(var i=0; i < cookies.length; i++) {
@@ -31,4 +36,55 @@ function clearCookies() {
         var name = equals > -1 ? cookies[i].substr(0, equals) : cookies[i];
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
+}
+
+function getCookies() {
+    var cookies = {};
+    if (document.cookie && document.cookie != '') {
+        var split = document.cookie.split(';');
+        for (var i = 0; i < split.length; i++) {
+            var name_value = split[i].split("=");
+            name_value[0] = name_value[0].replace(/^ /, '');
+            cookies[decodeURIComponent(name_value[0])] = decodeURIComponent(name_value[1]);
+        }
+    }
+    return cookies;
+}
+
+/* Remove methods */
+function clearAll() {
+    localStorage.clear();
+    sessionStorage.clear();
+    clearCookies();
+}
+
+function deleteStorageItemsExceptArray(allKeys, exceptedKeys) {
+    var keys = allKeys.filter(function(item){
+        !~exceptedKeys.indexOf(item);
+    });
+}
+
+function deleteSpecificStorageItems(specificKeys) {
+    var cookies = Object.keys(getCookies());
+    Object.keys(localStorage).forEach(function(name) {
+        if (~specificKeys.indexOf(name)) {
+            localStorage.removeItem(name);
+        }
+    });
+    Object.keys(sessionStorage).forEach(function(name) {
+        if (~specificKeys.indexOf(name)) {
+            sessionStorage.removeItem(name);
+        }
+    });
+    cookies.forEach(function(name) {
+        if (~specificKeys.indexOf(name)) {
+            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+    });
+}
+
+function removeItemByKey(name) {
+    localStorage.removeItem(name);
+    sessionStorage.removeItem(name);
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }

@@ -19,16 +19,23 @@ It's not just an adding timestamps to *.js files, you can manage any client stor
 
 ```javascript
 {
-  "versionKey": "YourAppName.currentVersion", // localStorage key, which contains info about current build
+  "versionKey": "YourAppName.currentVersion",
   "copyTo": [
-    {"dirPath": "../demos/3-modifying-existing-data/", "buildPath": "utils/app-version-manager/"}
+    { "dirPath": "../demos/3-modifying-existing-data/", "buildPath": "utils/app-version-manager/" }
   ],
-  "autoCopy": true // if true - a new build will be copied there automatically according to "copyTo" parameters, otherwise - will be created just a new version-manager build.
+  "autoCopy": true
 }
 ```
 
+<<<<<<< HEAD
+**versionKey** - localStorage key, which contains info about current build.
+**dirPath** - future application directory.
+**buildPath** - directory for version-manager inside specified application.
+**autoCopy** - if true - a new build will be copied there automatically according to "copyTo" parameters, otherwise - will be created just a new version-manager build.
+=======
 `dirPath` - application directory<br/>
 `buildPath` - directory for version-manager inside specified application
+>>>>>>> c3915139ccd25ad54a60c98e9e1608e415be7bfa
 
 Use demos to see a specific use cases.
 

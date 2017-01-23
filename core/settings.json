@@ -5,5 +5,11 @@
     {"dirPath": "../demos/2-data-auto-loading/", "buildPath": "app-version-manager/"},
     {"dirPath": "../demos/3-modifying-existing-data/", "buildPath": "utils/app-version-manager/"}
   ],
-  "autoCopy": true
+  "autoCopy": true,
+  "forceRemoveKeys": [
+    "a", "b"
+  ],
+  "exceptedKeys": [
+
+  ]
 }

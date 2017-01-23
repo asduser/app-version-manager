@@ -1,4 +1,7 @@
 {
   "version": 1485123573811,
-  "versionKey": "YourAppName.currentVersion"
+  "versionKey": "YourAppName.currentVersion",
+  "resetData": [
+    "userConfig"
+  ]
 }

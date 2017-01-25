@@ -1,5 +1,6 @@
 const configPath = '_CFG_PATH_'; // root category is application 'index.html' destination
 const xmlhttp = new XMLHttpRequest();
+let _config;
 
 xmlhttp.open('GET', configPath, true);
 xmlhttp.onreadystatechange = function() {
@@ -10,8 +11,10 @@ xmlhttp.onreadystatechange = function() {
             const currentVer = JSON.parse(localStorage.getItem(versionKey));
             if (currentVer != config.version) {
 
+                _config = config;
+
                 if (config.forceRemoveKeys.length) {
-                    deleteSpecificStorageItems(config.forceRemoveKeys);
+                    deleteSpecificStorageItems(config.storageList, config.forceRemoveKeys);
                 } else {
                     clearAll();
                 }
@@ -27,6 +30,13 @@ xmlhttp.onreadystatechange = function() {
     }
 };
 xmlhttp.send(null);
+
+/* Internal data */
+const storage = {
+    'local': 'localStorage',
+    'session': 'sessionStorage',
+    'cookie': 'cookie'
+};
 
 /* Cookie */
 function clearCookies() {
@@ -64,23 +74,27 @@ function deleteStorageItemsExceptArray(allKeys, exceptedKeys) {
     });
 }
 
-function deleteSpecificStorageItems(specificKeys) {
+function deleteSpecificStorageItems(storageList, specificKeys) {
     var cookies = Object.keys(getCookies());
-    Object.keys(localStorage).forEach(function(name) {
+    storageInList(storageList, storage.local) && Object.keys(localStorage).forEach(function(name) {
         if (~specificKeys.indexOf(name)) {
             localStorage.removeItem(name);
         }
     });
-    Object.keys(sessionStorage).forEach(function(name) {
+    storageInList(storageList, storage.session) && Object.keys(sessionStorage).forEach(function(name) {
         if (~specificKeys.indexOf(name)) {
             sessionStorage.removeItem(name);
         }
     });
-    cookies.forEach(function(name) {
+    storageInList(storageList, storage.cookie) && cookies.forEach(function(name) {
         if (~specificKeys.indexOf(name)) {
             document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
     });
+}
+
+function storageInList(storageList, storageKey) {
+    return !!~storageList.indexOf(storageKey) || !storageList.length;
 }
 
 function removeItemByKey(name) {

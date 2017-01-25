@@ -1,4 +1,11 @@
 {
   "version": 1485123573812,
-  "versionKey": "YourAppName.currentVersion"
+  "versionKey": "YourAppName.currentVersion",
+  "forceRemoveKeys": [
+    "a", "b"
+  ],
+  "exceptedKeys": [
+
+  ],
+  "storageList": []
 }

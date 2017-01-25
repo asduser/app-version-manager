@@ -1,6 +1,5 @@
 const configPath = '_CFG_PATH_'; // root category is application 'index.html' destination
 const xmlhttp = new XMLHttpRequest();
-let _config;
 
 xmlhttp.open('GET', configPath, true);
 xmlhttp.onreadystatechange = function() {
@@ -11,13 +10,14 @@ xmlhttp.onreadystatechange = function() {
             const currentVer = JSON.parse(localStorage.getItem(versionKey));
             if (currentVer != config.version) {
 
-                _config = config;
+                validateKeysCollections(config.forceRemoveKeys, config.exceptedKeys);
 
                 if (config.forceRemoveKeys.length) {
                     deleteSpecificStorageItems(config.storageList, config.forceRemoveKeys);
                 } else {
-                    clearAll();
+                    clearAll(config.storageList);
                 }
+                console.info('Configured storageList.');
 
                 localStorage.setItem(versionKey, JSON.stringify(config.version));
                 location.reload(true);
@@ -36,6 +36,9 @@ const storage = {
     'local': 'localStorage',
     'session': 'sessionStorage',
     'cookie': 'cookie'
+};
+const message = {
+    KEYS_VALIDATION_ERROR: 'Specific keys shouldn\'t contain any excepted key.'
 };
 
 /* Cookie */
@@ -62,10 +65,10 @@ function getCookies() {
 }
 
 /* Remove methods */
-function clearAll() {
-    localStorage.clear();
-    sessionStorage.clear();
-    clearCookies();
+function clearAll(storageList) {
+    storageInList(storageList, storage.local) && localStorage.clear();
+    storageInList(storageList, storage.session) && sessionStorage.clear();
+    storageInList(storageList, storage.cookie) && clearCookies();
 }
 
 function deleteStorageItemsExceptArray(allKeys, exceptedKeys) {
@@ -101,4 +104,14 @@ function removeItemByKey(name) {
     localStorage.removeItem(name);
     sessionStorage.removeItem(name);
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+/* Validation */
+function validateKeysCollections(exceptedList, specificList) {
+    let isExist = specificList.some(function(item){
+        return ~exceptedList.indexOf(item);
+    });
+    if (isExist) {
+        throw new Error(message.KEYS_VALIDATION_ERROR);
+    }
 }

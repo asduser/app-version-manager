@@ -10,11 +10,14 @@ xmlhttp.onreadystatechange = function() {
             const currentVer = JSON.parse(localStorage.getItem(versionKey));
             if (currentVer != config.version) {
 
+                validateKeysCollections(config.forceRemoveKeys, config.exceptedKeys);
+
                 if (config.forceRemoveKeys.length) {
-                    deleteSpecificStorageItems(config.forceRemoveKeys);
+                    deleteSpecificStorageItems(config.storageList, config.forceRemoveKeys);
                 } else {
-                    clearAll();
+                    clearAll(config.storageList);
                 }
+                console.info('Configured storageList.');
 
                 localStorage.setItem(versionKey, JSON.stringify(config.version));
                 location.reload(true);
@@ -27,6 +30,16 @@ xmlhttp.onreadystatechange = function() {
     }
 };
 xmlhttp.send(null);
+
+/* Internal data */
+const storage = {
+    'local': 'localStorage',
+    'session': 'sessionStorage',
+    'cookie': 'cookie'
+};
+const message = {
+    KEYS_VALIDATION_ERROR: 'Specific keys shouldn\'t contain any excepted key.'
+};
 
 /* Cookie */
 function clearCookies() {
@@ -52,10 +65,10 @@ function getCookies() {
 }
 
 /* Remove methods */
-function clearAll() {
-    localStorage.clear();
-    sessionStorage.clear();
-    clearCookies();
+function clearAll(storageList) {
+    storageInList(storageList, storage.local) && localStorage.clear();
+    storageInList(storageList, storage.session) && sessionStorage.clear();
+    storageInList(storageList, storage.cookie) && clearCookies();
 }
 
 function deleteStorageItemsExceptArray(allKeys, exceptedKeys) {
@@ -64,27 +77,42 @@ function deleteStorageItemsExceptArray(allKeys, exceptedKeys) {
     });
 }
 
-function deleteSpecificStorageItems(specificKeys) {
+function deleteSpecificStorageItems(storageList, specificKeys) {
     var cookies = Object.keys(getCookies());
-    Object.keys(localStorage).forEach(function(name) {
+    storageInList(storageList, storage.local) && Object.keys(localStorage).forEach(function(name) {
         if (~specificKeys.indexOf(name)) {
             localStorage.removeItem(name);
         }
     });
-    Object.keys(sessionStorage).forEach(function(name) {
+    storageInList(storageList, storage.session) && Object.keys(sessionStorage).forEach(function(name) {
         if (~specificKeys.indexOf(name)) {
             sessionStorage.removeItem(name);
         }
     });
-    cookies.forEach(function(name) {
+    storageInList(storageList, storage.cookie) && cookies.forEach(function(name) {
         if (~specificKeys.indexOf(name)) {
             document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
         }
     });
 }
 
+function storageInList(storageList, storageKey) {
+    return !!~storageList.indexOf(storageKey) || !storageList.length;
+}
+
 function removeItemByKey(name) {
     localStorage.removeItem(name);
     sessionStorage.removeItem(name);
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+/* Errors */
+function validateKeysCollections(exceptedList, specificList) {
+    console.info(exceptedList, specificList);
+    let isExist = specificList.some(function(item){
+        return ~exceptedList.indexOf(item);
+    });
+    if (isExist) {
+        throw new Error(message.KEYS_VALIDATION_ERROR);
+    }
 }

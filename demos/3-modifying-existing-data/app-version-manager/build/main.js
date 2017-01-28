@@ -1,4 +1,4 @@
-const configPath = '_CFG_PATH_'; // root category is application 'index.html' destination
+const configPath = 'app-version-manager/build/config.json'; // root category is application 'index.html' destination
 const xmlhttp = new XMLHttpRequest();
 
 xmlhttp.open('GET', configPath, true);
@@ -28,7 +28,7 @@ xmlhttp.onreadystatechange = function() {
                 console.info('You have an actual build:', currentVer);
             }
         } else {
-            throw new Error('Can\'t read app-version-manager configuration. Reason: file not found.');
+            console.error('Details: Can\'t read application cache configuration. Reason: file not found.');
         }
     }
 };
@@ -120,11 +120,17 @@ function deleteSpecificStorageItems(storageList, specificKeys, opposite) {
     });
 }
 
-/* Validation */
 function storageInList(storageList, storageKey) {
     return !!~storageList.indexOf(storageKey) || !storageList.length;
 }
 
+function removeItemByKey(name) {
+    localStorage.removeItem(name);
+    sessionStorage.removeItem(name);
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
+/* Validation */
 function validateKeysCollections(exceptedList, specificList) {
     let isExist = specificList.some(function(item){
         return ~exceptedList.indexOf(item);

@@ -1,2 +1,7 @@
-node_modules/
 .idea/
+node_modules/
+core/node_modules
+demos/1-direct-keys-specifying/app-version-manager/node_modules/
+demos/2-data-auto-loading/app-version-manager/node_modules/
+demos/3-modifying-existing-data/app-version-manager/node_modules/
+demos/4-removed-keys-collection/app-version-manager/node_modules/

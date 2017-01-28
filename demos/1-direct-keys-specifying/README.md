@@ -2,6 +2,6 @@
 
 **Scenario to reproduce:**<br/>
 
-1. Specify any data into the localStorage.
-2. Create a new version-manager build.
+1. Specify any data into the localStorage, sessionStorage or cookie.
+2. Update version-manager build via `build.bat`.
 3. All existing data will be destroyed.

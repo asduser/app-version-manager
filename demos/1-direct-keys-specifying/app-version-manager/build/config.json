@@ -1,0 +1,11 @@
+{
+  "version": 1485638322753,
+  "versionKey": "YourAppName.currentVersion",
+  "forceRemoveKeys": [],
+  "exceptedKeys": [],
+  "storageList": [
+    "localStorage",
+    "sessionStorage",
+    "cookie"
+  ]
+}

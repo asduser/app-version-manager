@@ -10,4 +10,4 @@ In real cases, it may throw compilation error, but due to version-manager - no.<
 3. Main `*.js` file has been changed, but localStorage data is not modified.
 4. Using version-manager prevents that issue and re-write a new data into the localStorage.
 
-> **P.S.** every time you change the application, a new build for version-manager should be created.
+> **P.S.** every time you change the application, a new build for version-manager should be created e.g. via `build.bat` or execute `generator.js` file manually by node.

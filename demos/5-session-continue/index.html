@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Version Manager - example#4</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- This script always should be the first! -->
+    <script src="app-version-manager/build/main.js"></script>
+</head>
+<body>
+
+<content>
+    <div class="info">
+        <p> Open console to see logs. </p>
+    </div>
+    <div class="content">
+        <form>
+            <label for="access-token-value">access_token value:</label>
+            <input id="access-token-value" type="text" />
+        </form>
+        <button onclick="setAccessToken()"> Set value </button>
+    </div>
+    <div class="logged-data">
+        <p> This data is visible only for logged users. </p>
+    </div>
+</content>
+
+<script src="src.js"></script>
+
+</body>
+</html>

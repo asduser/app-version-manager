@@ -1,4 +1,4 @@
-const configPath = '_CFG_PATH_'; // root category is application 'index.html' destination
+const configPath = 'app-version-manager/build/config.json'; // root category is application 'index.html' destination
 const xmlhttp = new XMLHttpRequest();
 
 xmlhttp.open('GET', configPath, true);

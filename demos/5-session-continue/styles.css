@@ -1,0 +1,12 @@
+.content, .info {
+    text-align: center;
+    padding: 5px;
+    width: 300px;
+}
+.info {
+    font: 14px italic Arial Narrow;
+    border: 1px solid #ccc;
+}
+.logged-data, .content {
+    display: none;
+}

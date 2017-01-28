@@ -6,10 +6,11 @@
     {"dirPath": "../demos/3-modifying-existing-data/", "buildPath": "utils/app-version-manager/"}
   ],
   "autoCopy": true,
+  "storageList": ["localStorage", "sessionStorage", "cookie"],
   "forceRemoveKeys": [
-    "a", "b"
+
   ],
   "exceptedKeys": [
-
+    "access_token"
   ]
 }

@@ -10,14 +10,17 @@ xmlhttp.onreadystatechange = function() {
             const currentVer = JSON.parse(localStorage.getItem(versionKey));
             if (currentVer != config.version) {
 
+                validateStorage(config.storageList);
+                validateCollectionTypes(config.forceRemoveKeys, config.exceptedKeys);
                 validateKeysCollections(config.forceRemoveKeys, config.exceptedKeys);
 
                 if (config.forceRemoveKeys.length) {
                     deleteSpecificStorageItems(config.storageList, config.forceRemoveKeys);
+                } else if (config.exceptedKeys.length) {
+                    deleteSpecificStorageItems(config.storageList, config.exceptedKeys, true);
                 } else {
                     clearAll(config.storageList);
                 }
-                console.info('Configured storageList.');
 
                 localStorage.setItem(versionKey, JSON.stringify(config.version));
                 location.reload(true);
@@ -38,7 +41,9 @@ const storage = {
     'cookie': 'cookie'
 };
 const message = {
-    KEYS_VALIDATION_ERROR: 'Specific keys shouldn\'t contain any excepted key.'
+    KEYS_COLLECTION_VALIDATION_ERROR: "Only one collection[] 'forceRemoveKeys' or 'exceptedKeys' may be defined.",
+    KEYS_VALIDATION_ERROR: "Specific keys shouldn't contain any excepted key.",
+    STORAGE_VALIDATION_ERROR: "Storage[] array should'n be null or empty!"
 };
 
 /* Cookie */
@@ -71,27 +76,46 @@ function clearAll(storageList) {
     storageInList(storageList, storage.cookie) && clearCookies();
 }
 
-function deleteStorageItemsExceptArray(allKeys, exceptedKeys) {
+function deleteStorageItemsExceptArray(storageList, allKeys, exceptedKeys) {
     var keys = allKeys.filter(function(item){
         !~exceptedKeys.indexOf(item);
     });
+    deleteSpecificStorageItems(storageList, keys);
 }
 
-function deleteSpecificStorageItems(storageList, specificKeys) {
+function deleteSpecificStorageItems(storageList, specificKeys, opposite) {
     var cookies = Object.keys(getCookies());
     storageInList(storageList, storage.local) && Object.keys(localStorage).forEach(function(name) {
-        if (~specificKeys.indexOf(name)) {
-            localStorage.removeItem(name);
+        if (opposite) {
+            if (~Object.keys(localStorage).indexOf(name) && !~specificKeys.indexOf(name)) {
+                localStorage.removeItem(name);
+            }
+        } else {
+            if (~specificKeys.indexOf(name)) {
+                localStorage.removeItem(name);
+            }
         }
     });
     storageInList(storageList, storage.session) && Object.keys(sessionStorage).forEach(function(name) {
-        if (~specificKeys.indexOf(name)) {
-            sessionStorage.removeItem(name);
+        if (opposite) {
+            if (~Object.keys(sessionStorage).indexOf(name) && !~specificKeys.indexOf(name)) {
+                sessionStorage.removeItem(name);
+            }
+        } else {
+            if (~specificKeys.indexOf(name)) {
+                sessionStorage.removeItem(name);
+            }
         }
     });
     storageInList(storageList, storage.cookie) && cookies.forEach(function(name) {
-        if (~specificKeys.indexOf(name)) {
-            document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        if (opposite) {
+            if (~cookies.indexOf(name) && !~specificKeys.indexOf(name)) {
+                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+        } else {
+            if (~specificKeys.indexOf(name)) {
+                document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
         }
     });
 }
@@ -106,13 +130,25 @@ function removeItemByKey(name) {
     document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 }
 
-/* Errors */
+/* Validation */
 function validateKeysCollections(exceptedList, specificList) {
-    console.info(exceptedList, specificList);
     let isExist = specificList.some(function(item){
         return ~exceptedList.indexOf(item);
     });
     if (isExist) {
         throw new Error(message.KEYS_VALIDATION_ERROR);
+    }
+}
+
+function validateStorage(storageList) {
+    if (!storageList || !storageList.length) {
+        throw new Error(message.STORAGE_VALIDATION_ERROR);
+    }
+}
+
+function validateCollectionTypes(exceptedList, specificList) {
+    if (exceptedList.length && specificList.length) {
+        console.warn(`See 'https://github.com/asduser/app-version-manager' for details.`);
+        throw new Error(message.KEYS_COLLECTION_VALIDATION_ERROR);
     }
 }

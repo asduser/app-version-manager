@@ -10,7 +10,13 @@
 Every time after new build version generated, all internal application settings will reset and specified to new one.
 It's not just an adding timestamps to *.js files, you can manage any client storage.
 
-## Installation & using
+# Table of Contents
+
+  * [Installation](#installation)
+  * [Demos](#demo-example)
+  * [Licence](#licence)
+
+## Installation
 
 1. `npm install`.
 2. `cd core`.

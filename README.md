@@ -10,9 +10,10 @@
 Every time after new build version generated, all internal application settings will reset and specified to new one.
 It's not just an adding timestamps to *.js files, you can manage any client storage.
 
-# Table of Contents
+## Table of Contents
 
   * [Installation](#installation)
+  * [Configuration](#configuration)
   * [Demos](#demo-example)
   * [Licence](#licence)
 
@@ -21,22 +22,21 @@ It's not just an adding timestamps to *.js files, you can manage any client stor
 1. `npm install`.
 2. `cd core`.
 3. `node generator.js` (or just execute `build.bat`).
-4. (optional) Set target directories in `core/settings.json` where a new version-manager build will be loaded.
 
-```javascript
-{
-  "versionKey": "YourAppName.currentVersion",
-  "copyTo": [
-    { "dirPath": "../demos/3-modifying-existing-data/", "buildPath": "utils/app-version-manager/" }
-  ],
-  "autoCopy": true
-}
-```
+## Configuration
 
-**versionKey** - localStorage key, which contains info about current build.<br/>
-**dirPath** - future application directory.<br/>
-**buildPath** - directory for version-manager inside specified application.<br/>
-**autoCopy** - if true - a new build will be copied there automatically according to "copyTo" parameters, otherwise - will be created just a new version-manager build.<br/>
+Configure `core/settings.json` if needed.
+
+| Parameter      | Required  | Example                                              | Description                                                                                                                      |
+|----------------|-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| versionKey     |  **true** |    `MyApplication.currentVersion`    | localStorage key, which contains info about current build. It is a good way to define a special postfix 'currentVersion'. Every time you will be aware of that value is responsible for version-managing. |
+| storageList    |  **true** |    `["localStorage", "sessionStorage", "cookie"]`    | Each specified storage will be affected by version-manager. You may set an empty array to manage all storage. |
+| autoCopy    |  *false* |    `true`    | If true - a new build will be copied there automatically according to "copyTo" paths, otherwise - will be created just a new version-manager build. |
+| copyTo    |  *false* |    `[{"dirPath": "../demos/2-data-auto-loading/", "buildPath": "app-version-manager/"}]`    | Array of objects, which contain path to detect project directory & path to load version-manager into there (automatically). |
+| removedKeys    |  *false* |    `['a', 'b', 'UserInfo']`    | Remove specified values from each storageList (see definition above). |
+| exceptedKeys    |  *false* |    `['access_token']`    | Remove all values from storageList except this one. |
+
+> To completely clear all storage just set `removedKeys` & `exceptedKeys` as empty arrays.
 
 Use demos directory to see a specific use cases.
 

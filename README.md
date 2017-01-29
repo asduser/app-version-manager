@@ -40,7 +40,7 @@ Configure `core/settings.json` if needed.
 |----------------|-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | versionKey     |  **true** |    `MyApplication.currentVersion`    | localStorage key, which contains info about current build. It is a good way to define a special postfix `.currentVersion`. Every time you will be aware of that value is responsible for version-managing. |
 | storageList    |  **true** |    `["localStorage", "sessionStorage", "cookie"]`    | Each determined storage will have been changed via version-manager. You may set an empty array[] to manage all storages. |
-| configPath    |  *true* |    `['app-version-manager/build/config.json']`    | If `autoCopy.use` is false, the path to config.json should be set manually. |
+| configPath    |  **true** |    `['app-version-manager/build/config.json']`    | If `autoCopy.use` is false, the path to config.json should be set manually. |
 | forceRemoveKeys    |  *false* |    `['a', 'b', 'UserInfo']`    | Remove specified values from each `storageList` item (see definition above). |
 | exceptedKeys    |  *false* |    `['access_token']`    | Remove all values from storageList except this one. |
 
@@ -48,9 +48,9 @@ Configure `core/settings.json` if needed.
 
 | Parameter      | Required  | Example                                              | Description                                                                                                      |
 |----------------|-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| use    |  *true* |    `true`    | If true - a new build will have been copied there automatically, otherwise - will be created just a new version-manager build. |
-| dirPath    |  *true* |    `../demos/2-data-auto-loading/`    | Path to project directory, which contains the main `index.html` file. |
-| buildPath    |  *true* |    `app-version-manager/`    | Path to load version-manager according to previous `dirPath` parameter. |
+| use    |  **true** |    `true`    | If true - a new build will have been copied there automatically, otherwise - will be created just a new version-manager build. |
+| dirPath    |  **true** |    `../demos/2-data-auto-loading/`    | Path to project directory, which contains the main `index.html` file. |
+| buildPath    |  **true** |    `app-version-manager/`    | Path to load version-manager according to previous `dirPath` parameter. |
 
 > To completely clear all storages just set `removedKeys` & `exceptedKeys` as empty arrays.
 

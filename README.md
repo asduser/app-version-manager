@@ -110,7 +110,7 @@ Otherwise, set this path manually in `settings.json` -> `configPath`.
  
 **I have several different tools which load initial data. Version-manager doesn't load always the first. Which is solution?**.
 
-* In this way, you may manually change request type to synchronous in `app-version-manager/main.js` file like this -> (`'GET', configPath, false`). Thus, all other scripts will be invoked only when version-manager loaded. 
+* In this way, you may manually change request type to synchronous in `app-version-manager/main.js` file like this: `'GET', configPath, false`. Thus, all other scripts will be invoked only when version-manager loaded. 
 
 ## Licence
 

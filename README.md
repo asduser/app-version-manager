@@ -34,7 +34,7 @@
 
 Configure `core/settings.json` if needed.
 
-##### Common options
+#### Common options
 
 | Parameter      | Required  | Example                                              | Description                                                                                                                      |
 |----------------|-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
@@ -44,7 +44,7 @@ Configure `core/settings.json` if needed.
 | forceRemoveKeys    |  *false* |    `['a', 'b', 'UserInfo']`    | Remove specified values from each `storageList` item (see definition above). |
 | exceptedKeys    |  *false* |    `['access_token']`    | Remove all values from storageList except this one. |
 
-##### Auto-Copy options
+#### Auto-Copy options
 
 | Parameter      | Required  | Example                                              | Description                                                                                                      |
 |----------------|-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
@@ -85,7 +85,7 @@ Use demos directory to see a specific use cases.
 2. [data-auto-loading](https://github.com/asduser/app-version-manager/tree/master/demos/2-data-auto-loading) - how data can be loaded depend on localStorage value.
 3. [data-auto-loading](https://github.com/asduser/app-version-manager/tree/master/demos/3-modifying-existing-data) - detect internal changes and localStorage saving. 
 4. [removed-keys-collection](https://github.com/asduser/app-version-manager/tree/master/demos/4-removed-keys-collection) - remove only determined values from the client storage. 
-5. [session-continue](https://github.com/asduser/app-version-manager/tree/master/demos/6-session-continue) - update application but continue user session. 
+5. [session-continue](https://github.com/asduser/app-version-manager/tree/master/demos/5-session-continue) - update application but continue user session. 
 
 ## Questions
 
@@ -102,11 +102,11 @@ Otherwise, set this path manually in `settings.json` -> `configPath`.
 
 **How to clear all storages, but save the current user session without log out?**
 
-* See [demo#5](https://github.com/asduser/app-version-manager/tree/master/demos/6-session-continue). If you use localStorage in your app to saving the major user data e.g. `access_token`, it's a good way to clear all data, but except this one. As a consequence, user won't be redirected to login page and could continue his session with updated application.
+* See [demo#5](https://github.com/asduser/app-version-manager/tree/master/demos/5-session-continue). If you use localStorage in your app to saving the major user data e.g. `access_token`, it's a good way to clear all data, but except this one. As a consequence, user won't be redirected to login page and could continue his session with updated application.
 
 **Why should do I set version-manager `main.js` file the first in list?**
 
-* When you run you application, version-manager checks current version and compares it with new one if needed. When a new build is available, the further application loading will be stopped and page reloads. As a result, the user doesn't see any content data while the version-manager is getting a new build.
+* When you run your application, version-manager checks current version and compares it with new one if needed. When a new build is available, the further application loading will be stopped and page reloads. As a result, the user doesn't see any content data while the version-manager is getting a new build.
  
 **I have several different tools which load initial data. Version-manager doesn't load always the first. Which is solution?**.
 

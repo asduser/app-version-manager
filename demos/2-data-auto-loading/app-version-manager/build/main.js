@@ -28,7 +28,7 @@ xmlhttp.onreadystatechange = function() {
                 console.info('You have an actual build:', currentVer);
             }
         } else {
-            console.error('Details: Can\'t read application cache configuration. Reason: file not found.');
+            throw new Error('Can\'t read app-version-manager configuration. Reason: file not found.');
         }
     }
 };
@@ -120,17 +120,11 @@ function deleteSpecificStorageItems(storageList, specificKeys, opposite) {
     });
 }
 
+/* Validation */
 function storageInList(storageList, storageKey) {
     return !!~storageList.indexOf(storageKey) || !storageList.length;
 }
 
-function removeItemByKey(name) {
-    localStorage.removeItem(name);
-    sessionStorage.removeItem(name);
-    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-}
-
-/* Validation */
 function validateKeysCollections(exceptedList, specificList) {
     let isExist = specificList.some(function(item){
         return ~exceptedList.indexOf(item);

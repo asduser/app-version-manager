@@ -8,4 +8,4 @@ Removing only specific keys from the client storage.
 2. Update page.
 3. Set each person into the localStorage.
 4. Execute `build.bat`.
-5. Update page & open console -> all data will have been cleared except 'person2'.
+5. Update page & open console -> 'person1' & 'person3' users will be removed, cause they were listed in `forceRemoveKeys` array.

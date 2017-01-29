@@ -9,8 +9,8 @@
 
 > Flexible utility via pure JavaScript to work with client application cache. 
 
-* Clear all storage data without ending the current user session.
-* Every time after new build version generated, all internal application settings will reset and specified to new one.
+* Clear all storages data without ending the current user session.
+* Every time after new build version generated, all internal application settings will reset and set to the new one.
 * It's not just an adding timestamps to *.js files, you can manage any client storage.
 
 ## Table of Contents
@@ -26,8 +26,9 @@
 
 ## Installation
 
-1. `npm install`.
-2. `node generator.js` (or just execute `build.bat`).
+1. `cd core`.
+2. `npm install`.
+3. `node generator.js` (or just execute `build.bat`).
 
 ## Configuration
 
@@ -38,9 +39,9 @@ Configure `core/settings.json` if needed.
 | Parameter      | Required  | Example                                              | Description                                                                                                                      |
 |----------------|-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
 | versionKey     |  **true** |    `MyApplication.currentVersion`    | localStorage key, which contains info about current build. It is a good way to define a special postfix `.currentVersion`. Every time you will be aware of that value is responsible for version-managing. |
-| storageList    |  **true** |    `["localStorage", "sessionStorage", "cookie"]`    | Each specified storage will have been changed via version-manager. You may set an empty array[] to manage all storage. |
-| configPath    |  *true* |    `['app-version-manager/build/config.json']`    | If `autoCopy.use` is false, the path to config.json should be specified manually. |
-| removedKeys    |  *false* |    `['a', 'b', 'UserInfo']`    | Remove specified values from each `storageList` item (see definition above). |
+| storageList    |  **true** |    `["localStorage", "sessionStorage", "cookie"]`    | Each determined storage will have been changed via version-manager. You may set an empty array[] to manage all storages. |
+| configPath    |  *true* |    `['app-version-manager/build/config.json']`    | If `autoCopy.use` is false, the path to config.json should be set manually. |
+| forceRemoveKeys    |  *false* |    `['a', 'b', 'UserInfo']`    | Remove specified values from each `storageList` item (see definition above). |
 | exceptedKeys    |  *false* |    `['access_token']`    | Remove all values from storageList except this one. |
 
 ##### Auto-Copy options
@@ -51,7 +52,7 @@ Configure `core/settings.json` if needed.
 | dirPath    |  *true* |    `../demos/2-data-auto-loading/`    | Path to project directory, which contains the main `index.html` file. |
 | buildPath    |  *true* |    `app-version-manager/`    | Path to load version-manager according to previous `dirPath` parameter. |
 
-> To completely clear all storage just set `removedKeys` & `exceptedKeys` as empty arrays.
+> To completely clear all storages just set `removedKeys` & `exceptedKeys` as empty arrays.
 
 Use demos directory to see a specific use cases.
 
@@ -62,10 +63,10 @@ Use demos directory to see a specific use cases.
   "versionKey": "YourAppName.currentVersion",
   "autoCopy": {
     "use": true,
-    "dirPath": "../projects/test/",
-    "buildPath": "app-version-manager/" // will be copied to '../projects/test/app-version-manager/'
+    "dirPath": "../project/",
+    "buildPath": "app-version-manager/" // will be copied to '../project/app-version-manager/'
   },
-  "configPath": "PATH_TO_VERSION_MANAGER_CONFIG_JSON", // Needed if 'autoCopy' specified to false. Example: ../app/version-manager/config.json
+  "configPath": "PATH_TO_VERSION_MANAGER_CONFIG_JSON", // Needed if 'autoCopy' set to false.
   "storageList": [
     "localStorage",
     "sessionStorage",
@@ -83,25 +84,33 @@ Use demos directory to see a specific use cases.
 1. [direct-keys-specifying](https://github.com/asduser/app-version-manager/tree/master/demos/1-direct-keys-specifying) - manually set values into the localStorage.
 2. [data-auto-loading](https://github.com/asduser/app-version-manager/tree/master/demos/2-data-auto-loading) - how data can be loaded depend on localStorage value.
 3. [data-auto-loading](https://github.com/asduser/app-version-manager/tree/master/demos/3-modifying-existing-data) - detect internal changes and localStorage saving. 
-4. [removed-keys-collection](https://github.com/asduser/app-version-manager/tree/master/demos/4-removed-keys-collection) - remove only specified values from the client storage. 
+4. [removed-keys-collection](https://github.com/asduser/app-version-manager/tree/master/demos/4-removed-keys-collection) - remove only determined values from the client storage. 
 5. [session-continue](https://github.com/asduser/app-version-manager/tree/master/demos/6-session-continue) - update application but continue user session. 
 
 ## Questions
 
-**What does mean `_CFG_PATH_ 404 (Not Found)` in console?**
+**What does mean `PATH_TO_VERSION_MANAGER_CONFIG_JSON 404 (Not Found)` in console?**
 
-If you use `autoCopy` behaviour, the target file generates an appropriate source inside itself with actual path to `config.json` file.
-Otherwise, specify this path manually in `settings.json` -> `configPath`.
+* Wasn't specified parameter `configPath`. If you use `autoCopy` behaviour, the target file generates an appropriate source inside itself with actual path to `config.json` file.
+Otherwise, set this path manually in `settings.json` -> `configPath`.
 
 > **Example**: `app-version-manager/build/config.json`. 
 
 **How can I except clearing a specific storage?**
 
-Just remove it from `storageList` array.
+* Just remove it from `storageList` array. You should be aware of: an empty array means that all storages will be used during the managing.
 
-**How to clear all storage, but save the current user session without log out?**
+**How to clear all storages, but save the current user session without log out?**
 
-See [demo#5](https://github.com/asduser/app-version-manager/tree/master/demos/6-session-continue). If you use localStorage in your app to saving the major user data e.g. `access_token`, it's a good way to clear all data, but except this one. As a consequence, user won't be redirected to login page and could continue his session with updated application.
+* See [demo#5](https://github.com/asduser/app-version-manager/tree/master/demos/6-session-continue). If you use localStorage in your app to saving the major user data e.g. `access_token`, it's a good way to clear all data, but except this one. As a consequence, user won't be redirected to login page and could continue his session with updated application.
+
+**Why should do I set version-manager `main.js` file the first in list?**
+
+* When you run you application, version-manager checks current version and compares it with new one if needed. When a new build is available, the further application loading will be stopped and page reloads. As a result, the user doesn't see any content data while the version-manager is getting a new build.
+ 
+**I have several different tools which load initial data. Version-manager doesn't load always the first. Which is solution?**.
+
+* In this way, you may manually change request type to synchronous in `app-version-manager/main.js` file like this -> (`'GET', configPath, false`). Thus, all other scripts will be invoked only when version-manager loaded. 
 
 ## Licence
 

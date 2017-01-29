@@ -28,8 +28,7 @@ xmlhttp.onreadystatechange = function() {
                 console.info('You have an actual build:', currentVer);
             }
         } else {
-            console.log(xmlhttp);
-            console.error('Details: Can\'t read application cache configuration. Reason: file not found.');
+            throw new Error('Can\'t read app-version-manager configuration. Reason: file not found.');
         }
     }
 };
@@ -141,7 +140,7 @@ function validateStorage(storageList) {
     }
 }
 
-function validateCollectionTypes(exceptedList, specificList) {
+function validateCollectionTypes(specificList, exceptedList) {
     if (exceptedList.length && specificList.length) {
         console.warn(`See 'https://github.com/asduser/app-version-manager' for details.`);
         throw new Error(message.KEYS_COLLECTION_VALIDATION_ERROR);

@@ -12,7 +12,5 @@
     "cookie"
   ],
   "forceRemoveKeys": [],
-  "exceptedKeys": [
-    "access_token"
-  ]
+  "exceptedKeys": []
 }

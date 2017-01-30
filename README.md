@@ -30,11 +30,11 @@
 
 ## Demo
 
-1. [direct-keys-specifying](https://github.com/asduser/app-version-manager/tree/master/demos/1-direct-keys-specifying) - manually set values into the localStorage.
-2. [data-auto-loading](https://github.com/asduser/app-version-manager/tree/master/demos/2-data-auto-loading) - how data can be loaded depend on localStorage value.
-3. [data-auto-loading](https://github.com/asduser/app-version-manager/tree/master/demos/3-modifying-existing-data) - detect internal changes and localStorage saving. 
-4. [removed-keys-collection](https://github.com/asduser/app-version-manager/tree/master/demos/4-removed-keys-collection) - remove only determined values from the client storage. 
-5. [session-continue](https://github.com/asduser/app-version-manager/tree/master/demos/5-session-continue) - update application but continue user session. 
+1. [direct-keys-specifying](https://github.com/asduser/app-version-manager/tree/master/demos/1-direct-keys-specifying)
+2. [data-auto-loading](https://github.com/asduser/app-version-manager/tree/master/demos/2-data-auto-loading)
+3. [modifying-existing-data](https://github.com/asduser/app-version-manager/tree/master/demos/3-modifying-existing-data) 
+4. [removed-keys-collection](https://github.com/asduser/app-version-manager/tree/master/demos/4-removed-keys-collection) 
+5. [session-continue](https://github.com/asduser/app-version-manager/tree/master/demos/5-session-continue) 
 
 ## Configuration
 

@@ -9,9 +9,7 @@
 
 > Flexible utility via pure JavaScript to work with client application cache. 
 
-* Clear all storages data without ending the current user session.
-* Every time after new build version generated, all internal application settings will reset and set to the new one.
-* It's not just an adding timestamps to *.js files, you can manage any client storage.
+[![](description.gif)]()
 
 ## Table of Contents
 
@@ -29,29 +27,6 @@
 1. `cd core`.
 2. `npm install`.
 3. `node generator.js` (or just execute `build.bat`).
-
-## Example
-
-```javascript
-{
-  "versionKey": "YourAppName.currentVersion",
-  "autoCopy": {
-    "use": true,
-    "dirPath": "../project/",
-    "buildPath": "app-version-manager/" // will be copied to '../project/app-version-manager/'
-  },
-  "configPath": "PATH_TO_VERSION_MANAGER_CONFIG_JSON", // Needed if 'autoCopy' set to false.
-  "storageList": [
-    "localStorage",
-    "sessionStorage",
-    "cookie"
-  ],
-  "forceRemoveKeys": [],
-  "exceptedKeys": [
-    "access_token" // remove all keys except 'access_token'
-  ]
-}
-```
 
 ## Demo
 

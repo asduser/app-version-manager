@@ -7,9 +7,7 @@
 
 [![](logo.png)]()
 
-> Flexible utility via pure JavaScript to work with client application cache. 
-
-[![](description.gif)]()
+> Flexible utility via pure JavaScript to work with client application cache.
 
 ## Table of Contents
 

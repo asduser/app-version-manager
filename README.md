@@ -8,6 +8,7 @@
 * better client storages management.
 * remove all, specific or except values.
 * custom configuring and scalability.
+* works with any project type: Angular/React, Native JavaScript, jQuery etc. 
 * more than just an adding a timestamp to *.js files.
 
 [![](description.gif)]()

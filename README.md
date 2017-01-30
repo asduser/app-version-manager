@@ -5,9 +5,11 @@
 
 ## Application Version Manager
 
-[![](logo.png)]()
+> Flexible utility via pure JavaScript to work with client application cache. Here is an example how it works in real projects. 
 
-> Flexible utility via pure JavaScript to work with client application cache.
+[![](description.gif)]()
+
+**Notice:** Version Manager has no UI, only internal JavaScript implementation. Just include it in your project & configure!
 
 ## Table of Contents
 

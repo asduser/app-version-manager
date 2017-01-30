@@ -5,11 +5,14 @@
 
 ## Application Version Manager
 
-> Flexible utility via pure JavaScript to work with client application cache. Here is an example how it works in real projects. 
+* better client storages management.
+* remove all, specific or except values.
+* custom configuring and scalability.
+* more than just an adding a timestamp to *.js files.
 
 [![](description.gif)]()
 
-**Notice:** Version Manager has no UI, only internal JavaScript implementation. Just include it in your project & configure!
+> **Notice:** Version Manager has no UI, only internal JavaScript implementation. Just include it in your project & configure!
 
 ## Table of Contents
 

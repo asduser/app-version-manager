@@ -1,26 +1,32 @@
 {
-  "version": 1486318808755,
-  "versionKey": "demo4.currentVersion",
+  "version": 1486317962571,
+  "versionKey": "YourAppName.currentVersion",
   "storages": [
     {
       "isActive": true,
       "type": "localStorage",
       "remove": [
-        "person1",
-        "person3"
+        "a"
       ],
-      "exclude": []
+      "exclude": [
+        "b",
+        "c"
+      ]
     },
     {
       "isActive": false,
       "type": "sessionStorage",
-      "exclude": []
+      "exclude": [
+        "b",
+        "c"
+      ]
     },
     {
       "isActive": false,
       "type": "cookie",
-      "remove": [],
-      "exclude": []
+      "remove": [
+        "a"
+      ]
     }
   ]
 }

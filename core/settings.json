@@ -6,11 +6,23 @@
     "buildPath": "app-version-manager/"
   },
   "configPath": "PATH_TO_VERSION_MANAGER_CONFIG_JSON",
-  "storageList": [
-    "localStorage",
-    "sessionStorage",
-    "cookie"
-  ],
-  "forceRemoveKeys": [],
-  "exceptedKeys": []
+  "storages": [
+    {
+      "isActive": true,
+      "type": "localStorage",
+      "remove": [],
+      "exclude": []
+    },
+    {
+      "isActive": false,
+      "type": "sessionStorage",
+      "exclude": []
+    },
+    {
+      "isActive": false,
+      "type": "cookie",
+      "remove": [],
+      "exclude": []
+    }
+  ]
 }

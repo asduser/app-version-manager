@@ -8,7 +8,7 @@
 [![](description.gif)]()
 
 * better client storages management.
-* remove all, specific or except values.
+* remove all, specific or exclude values.
 * custom configuring and scalability.
 * works with any project type: Angular/React, Native JavaScript, jQuery etc. 
 * more than just an adding a timestamp to *.js files.
@@ -46,25 +46,19 @@ Configure `core/settings.json` if needed.
 
 #### Common options
 
-| Parameter      | Required  | Example                                              | Description                                                                                                                      |
-|----------------|-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| versionKey     |  **true** |    `MyApplication.currentVersion`    | localStorage key, which contains info about current build. It is a good way to define a special postfix `.currentVersion`. Every time you will be aware of that value is responsible for version-managing. |
-| storageList    |  **true** |    `["localStorage", "sessionStorage", "cookie"]`    | Each determined storage will have been changed via version-manager. You may set an empty array[] to manage all storages. |
-| configPath    |  **true** |    `['app-version-manager/build/config.json']`    | If `autoCopy.use` is false, the path to config.json should be set manually. |
-| forceRemoveKeys    |  *false* |    `['a', 'b', 'UserInfo']`    | Remove specified values from each `storageList` item (see definition above). |
-| exceptedKeys    |  *false* |    `['access_token']`    | Remove all values from storageList except this one. |
+| Parameter      | Description                                                                                                                      |
+|----------------|----------------------------------------------------------------------------------------------------------------------------------|
+| versionKey     | localStorage key, which contains info about current build. |
+| storages    | Only `isActive` storage uses. |
+| configPath    |  If `autoCopy.use` is false, the path to config.json should be set manually. |
 
 #### Auto-Copy options
 
-| Parameter      | Required  | Example                                              | Description                                                                                                      |
-|----------------|-----------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| use    |  **true** |    `true`    | If true - a new build will have been copied there automatically, otherwise - will be created just a new version-manager build. |
-| dirPath    |  **true** |    `../demos/2-data-auto-loading/`    | Path to project directory, which contains the main `index.html` file. |
-| buildPath    |  **true** |    `app-version-manager/`    | Path to load version-manager according to previous `dirPath` parameter. |
-
-> To completely clear all storages just set `removedKeys` & `exceptedKeys` as empty arrays.
-
-Use demos directory to see a specific use cases.
+| Parameter      | Description                                                                                                      |
+|----------------|-------------------------------------------------------------------------------------------------------------------|
+| use    |  If `true` - a new build will have been copied there automatically, otherwise - will be created just a new version-manager build. |
+| dirPath | Path to project directory, which contains the main `index.html` file. |
+| buildPath | Path to load version-manager according to previous `dirPath` parameter. |
 
 ## Questions
 
@@ -73,11 +67,7 @@ Use demos directory to see a specific use cases.
 * Wasn't specified parameter `configPath`. If you use `autoCopy` behaviour, the target file generates an appropriate source inside itself with actual path to `config.json` file.
 Otherwise, set this path manually in `settings.json` -> `configPath`.
 
-> **Example**: `app-version-manager/build/config.json`. 
-
-**How can I except clearing a specific storage?**
-
-* Just remove it from `storageList` array. You should be aware of: an empty array means that all storages will be used during the managing.
+> **Example**: `app-version-manager/build/config.json`.
 
 **How to clear all storages, but save the current user session without log out?**
 

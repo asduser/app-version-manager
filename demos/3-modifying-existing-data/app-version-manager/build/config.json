@@ -1,11 +1,23 @@
 {
-  "version": 1485694085196,
+  "version": 1486318833973,
   "versionKey": "demo3.currentVersion",
-  "forceRemoveKeys": [],
-  "exceptedKeys": [],
-  "storageList": [
-    "localStorage",
-    "sessionStorage",
-    "cookie"
+  "storages": [
+    {
+      "isActive": true,
+      "type": "localStorage",
+      "remove": [],
+      "exclude": []
+    },
+    {
+      "isActive": false,
+      "type": "sessionStorage",
+      "exclude": []
+    },
+    {
+      "isActive": false,
+      "type": "cookie",
+      "remove": [],
+      "exclude": []
+    }
   ]
 }

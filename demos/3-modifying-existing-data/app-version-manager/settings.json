@@ -5,12 +5,24 @@
     "dirPath": "../projects/test/",
     "buildPath": "app-version-manager/"
   },
-  "configPath": "app-version-manager/build/config.json",
-  "storageList": [
-    "localStorage",
-    "sessionStorage",
-    "cookie"
-  ],
-  "forceRemoveKeys": [],
-  "exceptedKeys": []
+  "configPath": "PATH_TO_VERSION_MANAGER_CONFIG_JSON",
+  "storages": [
+    {
+      "isActive": true,
+      "type": "localStorage",
+      "remove": [],
+      "exclude": []
+    },
+    {
+      "isActive": false,
+      "type": "sessionStorage",
+      "exclude": []
+    },
+    {
+      "isActive": false,
+      "type": "cookie",
+      "remove": [],
+      "exclude": []
+    }
+  ]
 }

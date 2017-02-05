@@ -8,9 +8,7 @@ const config = require('./settings.json');
 const configData = {
     version: new Date().getTime(),
     versionKey: config.versionKey,
-    forceRemoveKeys: config.forceRemoveKeys,
-    exceptedKeys: config.exceptedKeys,
-    storageList: config.storageList
+    storages: config.storages
 };
 const targetDir = 'build/';
 const targetConfigPath = targetDir + 'config.json';
@@ -61,7 +59,7 @@ function handleErrors(err) {
 
 function getMessages() {
     return {
-        "COPY_TO_IS_INVALID": "Fields 'dirPath' & 'buildPath' is required.",
+        "COPY_TO_IS_INVALID": "If 'autoCopy' set true, fields 'dirPath' & 'buildPath' should be defined.",
         "SUCCESSFULLY_COPIED": 'Successfully copied to: '
     };
 }

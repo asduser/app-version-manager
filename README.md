@@ -1,7 +1,7 @@
 [![node](https://img.shields.io/node/v/gh-badges.svg)]()
 [![npm (scoped)](https://img.shields.io/npm/v/@cycle/core.svg)]()
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
-[![](https://img.shields.io/badge/version-1.3-green.svg)]()
+[![](https://img.shields.io/badge/version-1.4-green.svg)]()
 
 ## Application Version Manager
 
@@ -49,7 +49,7 @@ Configure `core/settings.json` if needed.
 | Parameter      | Description                                                                                                                      |
 |----------------|----------------------------------------------------------------------------------------------------------------------------------|
 | versionKey     | localStorage key, which contains info about current build. |
-| storages    | Only `isActive` storage uses. |
+| storages    | Only `isActive` storage is used. |
 | configPath    |  If `autoCopy.use` is false, the path to config.json should be set manually. |
 
 #### Auto-Copy options

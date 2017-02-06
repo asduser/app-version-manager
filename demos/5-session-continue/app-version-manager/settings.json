@@ -14,13 +14,13 @@
       "exclude": ["access_token"]
     },
     {
-      "isActive": false,
+      "isActive": true,
       "type": "sessionStorage",
       "remove": [],
       "exclude": []
     },
     {
-      "isActive": false,
+      "isActive": true,
       "type": "cookie",
       "remove": [],
       "exclude": []

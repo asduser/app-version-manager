@@ -162,7 +162,7 @@ function storageInList(storages, storageKey) {
 }
 
 function validateKeysCollections(removedList, excludedList) {
-    let isExist = removedList.some(function(item){
+    var isExist = removedList.some(function(item){
         return ~excludedList.indexOf(item);
     });
     if (isExist) {
@@ -177,7 +177,7 @@ function validateStorage(storages) {
 }
 
 function validateStorageType(storages) {
-    storages.forEach((storage) => {
+    storages.forEach(function (storage) {
         if (!~supportedStorages.indexOf(storage.type)) {
             throw new Error("Incorrect storage  type: '" + storage.type +"'. It should be the following: localStorage, sessionStorage, cookie.");
         }
@@ -186,7 +186,7 @@ function validateStorageType(storages) {
 
 function validateCollectionTypes(removedList, excludedList) {
     if (excludedList.length && removedList.length) {
-        console.warn(`See 'https://github.com/asduser/app-version-manager' for details.`);
+        console.warn('See \'https://github.com/asduser/app-version-manager\' for details.');
         throw new Error(message.KEYS_COLLECTION_VALIDATION_ERROR);
     }
 }

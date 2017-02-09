@@ -5,7 +5,7 @@
     "dirPath": "../projects/test/",
     "buildPath": "app-version-manager/"
   },
-  "configPath": "PATH_TO_VERSION_MANAGER_CONFIG_JSON",
+  "configPath": "./app-version-manager/build/config.json",
   "storages": [
     {
       "isActive": true,

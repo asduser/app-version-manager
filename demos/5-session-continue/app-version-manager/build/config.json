@@ -1,5 +1,5 @@
 {
-  "version": 1486318924418,
+  "version": 1486628869701,
   "versionKey": "demo5.currentVersion",
   "storages": [
     {
@@ -11,13 +11,13 @@
       ]
     },
     {
-      "isActive": false,
+      "isActive": true,
       "type": "sessionStorage",
       "remove": [],
       "exclude": []
     },
     {
-      "isActive": false,
+      "isActive": true,
       "type": "cookie",
       "remove": [],
       "exclude": []

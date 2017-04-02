@@ -44,7 +44,7 @@
 
 Configure `core/settings.json` if needed.
 
-#### Common options
+#### Common
 
 | Parameter      | Description                                                                                                                      |
 |----------------|----------------------------------------------------------------------------------------------------------------------------------|
@@ -52,7 +52,7 @@ Configure `core/settings.json` if needed.
 | storages    | Only `isActive` storage is used. |
 | configPath    |  If `autoCopy.use` is false, the path to config.json should be set manually. |
 
-#### Auto-Copy options
+#### Auto-Copy
 
 | Parameter      | Description                                                                                                      |
 |----------------|-------------------------------------------------------------------------------------------------------------------|
